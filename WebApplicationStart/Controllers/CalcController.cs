@@ -4,8 +4,11 @@ namespace WebApplicationStart.Controllers
 {
     public class CalcController : Controller
     {
-        public string Index(double a, double b, string c = "+")
+        public string Index(double a, double b, string c)
         {
+            if (string.IsNullOrEmpty(c))
+                return $"{a} + {b} = {a + b}";
+
             switch (c)
             {
                 case "+":
@@ -20,7 +23,7 @@ namespace WebApplicationStart.Controllers
                     else
                         return $"{a} : {b} = {a / b}";
                 default:
-                    return $"{0} + {0} = {0 + 0}";
+                    return $"Не верный знак, используйте только: +, -, *, /";
             }
         }
     }
